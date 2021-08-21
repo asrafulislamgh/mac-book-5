@@ -1,0 +1,56 @@
+function getValueById(idName) {
+  const valueOfId = document.getElementById(idName);
+  return valueOfId;
+}
+function getTotal() {
+  let bestPrice = 1299;
+  let memoryValue = getValueById("extra-memory");
+  let storageValue = getValueById("extra-storage");
+  let deliveryCharge = getValueById("delivery-charge");
+  let totalPrice = getValueById("total-price");
+  let grandTotal = getValueById("grand-total");
+
+  const totalPriceAmount =
+    parseInt(memoryValue.innerText) +
+    parseInt(storageValue.innerText) +
+    parseInt(deliveryCharge.innerText) +
+    parseInt(bestPrice);
+  totalPrice.innerText = totalPriceAmount;
+  grandTotal.innerText = totalPriceAmount;
+}
+function calculation(idName, price) {
+  let idValue = document.getElementById(idName);
+  idValue.innerText = price;
+  getTotal();
+}
+
+document.getElementById("memory-8gb").addEventListener("click", function () {
+  calculation("extra-memory", 0);
+});
+document.getElementById("memory-16gb").addEventListener("click", function () {
+  calculation("extra-memory", 180);
+});
+document.getElementById("storage-256gb").addEventListener("click", function () {
+  calculation("extra-storage", 0);
+});
+document.getElementById("storage-512gb").addEventListener("click", function () {
+  calculation("extra-storage", 100);
+});
+document.getElementById("storage-1tb").addEventListener("click", function () {
+  calculation("extra-storage", 180);
+});
+document.getElementById("free-delivery").addEventListener("click", function () {
+  calculation("delivery-charge", 0);
+});
+document.getElementById("paid-delivery").addEventListener("click", function () {
+  calculation("delivery-charge", 20);
+});
+document.getElementById("promo-btn").addEventListener("click", function () {
+  let grandTotaValue = getValueById("grand-total");
+  let promoInput = getValueById("promo-code");
+  if (promoInput.value == "stevekaku") {
+    grandTotaValue.innerText = parseFloat(grandTotaValue.innerText) * 0.8;
+  } else {
+    console.log("Promo is not valid");
+  }
+});
