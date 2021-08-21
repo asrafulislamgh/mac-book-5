@@ -33,7 +33,7 @@ function addPromoCode() {
   let promoBtn = getValueById("promo-btn");
   let promoInput = getValueById("promo-code");
   let promoNotify = getValueById("promo-notify");
-  if (promoInput.value == "stevekaku") {
+  if (promoInput.value.toLowerCase() == "stevekaku") {
     const dicountedValue =
       parseFloat(grandTotaValue.innerText) -
       parseFloat(grandTotaValue.innerText) * 0.8;
