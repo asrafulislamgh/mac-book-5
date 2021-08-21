@@ -23,6 +23,26 @@ function calculation(idName, price) {
   idValue.innerText = price;
   getTotal();
 }
+function addPromoCode() {
+  let grandTotaValue = getValueById("grand-total");
+  let promoBtn = getValueById("promo-btn");
+  let promoInput = getValueById("promo-code");
+  let promoNotify = getValueById("promo-notify");
+  if (promoInput.value == "stevekaku") {
+    const dicountedValue =
+      parseFloat(grandTotaValue.innerText) -
+      parseFloat(grandTotaValue.innerText) * 0.8;
+    grandTotaValue.innerText = (
+      parseFloat(grandTotaValue.innerText) * 0.8
+    ).toFixed(2);
+    promoNotify.innerText = "You are discounted $" + dicountedValue.toFixed(2);
+    promoInput.value = "";
+    promoBtn.setAttribute("disabled", true);
+  } else {
+    promoNotify.innerText = "Invalid Promo Code!";
+    promoInput.value = "";
+  }
+}
 
 document.getElementById("memory-8gb").addEventListener("click", function () {
   calculation("extra-memory", 0);
@@ -46,11 +66,5 @@ document.getElementById("paid-delivery").addEventListener("click", function () {
   calculation("delivery-charge", 20);
 });
 document.getElementById("promo-btn").addEventListener("click", function () {
-  let grandTotaValue = getValueById("grand-total");
-  let promoInput = getValueById("promo-code");
-  if (promoInput.value == "stevekaku") {
-    grandTotaValue.innerText = parseFloat(grandTotaValue.innerText) * 0.8;
-  } else {
-    console.log("Promo is not valid");
-  }
+  addPromoCode();
 });
