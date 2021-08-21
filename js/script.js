@@ -1,7 +1,10 @@
+// function for Getting id
 function getValueById(idName) {
   const valueOfId = document.getElementById(idName);
   return valueOfId;
 }
+
+// Calculating the total value
 function getTotal() {
   let bestPrice = 1299;
   let memoryValue = getValueById("extra-memory");
@@ -23,6 +26,8 @@ function calculation(idName, price) {
   idValue.innerText = price;
   getTotal();
 }
+
+// Promo code calculation
 function addPromoCode() {
   let grandTotaValue = getValueById("grand-total");
   let promoBtn = getValueById("promo-btn");
@@ -44,6 +49,7 @@ function addPromoCode() {
   }
 }
 
+// Event listener for all the clickable button
 document.getElementById("memory-8gb").addEventListener("click", function () {
   calculation("extra-memory", 0);
 });
